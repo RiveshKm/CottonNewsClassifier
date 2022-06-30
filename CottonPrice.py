@@ -86,6 +86,8 @@ while back != True:
         st.write(doc.get("Title"))
         st.write("### Description")
         st.write(doc.get("Description"))
+        url = doc.get("Url")
+        st.write("Click on the [Link](%s) for more" % url)
         st.write("##### Source")
         st.write(doc.get("Sources"))
 
@@ -117,6 +119,8 @@ else:
         st.write(prev_doc[-2].get("Title"))
         st.write("### Description")
         st.write(prev_doc[-2].get("Description"))
+        url = prev_doc[-2].get("Url")
+        st.write("Click on the [Link](%s) for more" % url)
         st.write("##### Source")
         st.write(prev_doc[-2].get("Sources"))
 
