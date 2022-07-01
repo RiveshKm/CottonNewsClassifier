@@ -40,6 +40,9 @@ st.write("""
 """)
 
 
+countCompleted = collection.find({'Status':"Completed"}).count()
+All = collection.find().count()
+
 left_column, middle_col, right_column = st.columns([5,1,2])
 back = st.button("Back")
 
@@ -48,6 +51,12 @@ hide_footer_style = """
 .reportview-container .main footer {visibility: hidden;}
 """
 st.markdown(hide_footer_style, unsafe_allow_html=True)
+
+def getCount(right_column,countCompleted,All):
+    with right_column:
+        y = st.success("**{}/{}**".format(countCompleted,All))
+    return y
+
 
 footer="""<style>
 a:link , a:visited{
@@ -101,15 +110,19 @@ while back != True:
 
     if b1:
         collection.update_one(query,{"$set":{'Status': "Completed", 'Level': "Potential Increase"}})
+        getCount(right_column,countCompleted,All)
 
     elif b2:
         collection.update_one(query,{"$set":{'Status': "Completed", 'Level': "Potential Decrease"}})
+        getCount(right_column,countCompleted,All)
 
     elif b3:
         collection.update_one(query,{"$set":{'Status': "Completed", 'Level': "Likely Stable"}})
+        getCount(right_column,countCompleted,All)
 
     elif b4:
         collection.update_one(query,{"$set":{'Status': "Completed", 'Level': "Irrelevant"}})
+        getCount(right_column,countCompleted,All)
 
     break
 
